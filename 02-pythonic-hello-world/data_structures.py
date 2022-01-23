@@ -22,4 +22,3 @@ lista = [8, 2, -5, "string", 2.7]
 # lista.pop(3)
 # lista.sort()
 # print(lista)
-print(chr("21"))
