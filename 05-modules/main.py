@@ -78,19 +78,24 @@
 # except:
 #     # daca apare o exceptie si vrem sa afisam ceva
 
-try:
-    valoare = int(input("Prima cifra din CNP: "))
-    # impartire = 1 / valoare
-    lista = [1]
-    # lista.append("2")
-    valoare = lista[0.5]
-except TypeError:
-    print("Type error")
-except AttributeError:
-    print("Eroare de sintaxa")
-except ValueError:
-    print("Ai introdus gresit")
-except ZeroDivisionError:
-    print("Eroare la impartire")
-except Exception as e: # inglobeaza toate erorile
-    print("Exceptie la impartire", e)
+# try:
+#     valoare = int(input("Prima cifra din CNP: "))
+#     # impartire = 1 / valoare
+#     lista = [1]
+#     # lista.append("2")
+#     valoare = lista[0.5]
+# except TypeError: # putem sa scrie mai multe exceptii pe aceasi ramura
+#     print("Type error")
+# else:
+#     print("nu exista exceptie")
+# finally:
+#     print("se executa oricum")
+# except AttributeError:
+#     print("Eroare de sintaxa")
+# except ValueError:
+#     print("Ai introdus gresit")
+# except ZeroDivisionError:
+#     print("Eroare la impartire")
+# except Exception as e: # inglobeaza toate erorile
+#     print("Exceptie la impartire", e)
+
