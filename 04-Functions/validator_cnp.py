@@ -20,8 +20,14 @@
 from datetime import datetime
 
 cnp = input("Introduceti CNP: ")
-if not cnp.isdigit() or len(cnp) != 13:
-    cnp = input("Ati introdus gresit! CNP are 13 cifre. Mai incercati odata: ")
+
+incercari = 3
+while incercari != 0:
+    if len(cnp) != 13 or not cnp.isdigit():
+        cnp = input(f"Ati introdus gresit! CNP are 13 cifre. Mai aveti {incercari} incercari: ")
+    else:
+        break
+    incercari -= 1
 
 
 def sex():
@@ -58,7 +64,9 @@ def cifra_de_control():
 
 
 def validare():
-    if sex() and data_nasterii() and judet() and nnn() and cifra_de_control():
+    if not cnp.isdigit():
+        return "\nAti introdus un CNP invalid."
+    elif sex() and data_nasterii() and judet() and nnn() and cifra_de_control():
         return "\nAti introdus un CNP valid."
     else:
         return "\nAti introdus un CNP invalid."
