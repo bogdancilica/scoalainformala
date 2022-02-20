@@ -1,6 +1,6 @@
 # VALIDATOR CNP
 # Codul numeric personal sau CNP este codul unic al fiecărei persoane născute în România, format din exact 13 cifre.
-# Format: S AA LL ZZ JJ NNN C
+# Format: S AA LL ZZ JJ NNN C.
 # S reprezintă sexul și secolul în care s-a născut persoana care posedă acel CNP.
     # Prima cifră a CNP-ului este: (sex bărbătesc / sex femeiesc)
     # 1 / 2 - născuți între 1 ianuarie 1900 și 31 decembrie 1999
