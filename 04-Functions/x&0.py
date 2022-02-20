@@ -5,7 +5,7 @@
 # pozitia 5 este cea mai vanata
 # pozitia 1 sau 3 sau 7 sau 9 reprezinta optiunea a doua in cerintele unei masini.
 # Prima valoare disponibila dintre acestea va fi marcata cu “O” de catre masina/robot
-# In cazul in care toate acestea sunt ocupate se incearca prima valoare ramasa libera dintre 2,4,6,8
+# In cazul in care toate acestea sunt ocupate se incearca prima valoare ramasa libera dintre 2,4,6,8.
 
 import random
 
