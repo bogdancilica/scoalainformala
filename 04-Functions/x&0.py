@@ -1,5 +1,5 @@
 # X si 0
-# Human player vs Computer
+# Human Player vs Computer
 # De asemenea, pentru alegerea unei casute libere de catre masina/robot sau de catre om aveti in vedere urmatoarele:
 # intrarile sunt de la 1 la 9 astfel: 1|2|3 4|5|6 7|8|9
 # pozitia 5 este cea mai vanata
