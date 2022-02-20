@@ -14,6 +14,7 @@ board = [" ", " ", " ",
          " ", " ", " ",
          " ", " ", " "]
 print("Play X & 0\n")
+print("Cum sa alegi pozitia: ")
 print("1 | 2 | 3")
 print("4 | 5 | 6")
 print("7 | 8 | 9\n")
@@ -81,7 +82,8 @@ def check_castigator():
     column_3 = board[2] == board[5] == board[8] != " "
     diagonal_1 = board[0] == board[4] == board[8] != " "
     diagonal_2 = board[2] == board[4] == board[6] != " "
-    if row_1 or row_2 or row_3 or column_1 or column_2 or column_3 or diagonal_1 or diagonal_2:
+    egalitate = " " not in board
+    if row_1 or row_2 or row_3 or column_1 or column_2 or column_3 or diagonal_1 or diagonal_2 or egalitate:
         return False
     else:
         return True
@@ -137,8 +139,8 @@ def game():
 
     else:
         while check_castigator():
-            print_board()
             alegere_calculator()
+            print_board()
             alegerea_mea()
         print_board()
         print(cine_castiga())
