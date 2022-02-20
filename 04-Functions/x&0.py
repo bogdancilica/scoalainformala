@@ -8,13 +8,19 @@
 # In cazul in care toate acestea sunt ocupate se incearca prima valoare ramasa libera dintre 2,4,6,8
 
 import random
+
+
 board = [" ", " ", " ",
          " ", " ", " ",
          " ", " ", " "]
-print("Play X & 0:")
+print("Play X & 0\n")
+print("1 | 2 | 3")
+print("4 | 5 | 6")
+print("7 | 8 | 9\n")
 
 
 def print_board():
+    print("")
     print(board[0] + '|' + board[1] + '|' + board[2])
     print('-+-+-')
     print(board[3] + '|' + board[4] + '|' + board[5])
@@ -31,9 +37,17 @@ def cine_incepe():
 
 
 def alegerea_mea():
-    alegere = int(input("Alege un numar de la 1 la 9: "))
-    if board[alegere - 1] == " ":
-        board[alegere - 1] = "X"
+    alegere = input("Alege un numar de la 1 la 9: ")
+    valid = False
+    while not valid:
+        while alegere not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            alegere = input("Alege un numar de la 1 la 9: ")
+        alegere = int(alegere)
+        if board[alegere - 1] == " ":
+            valid = True
+        else:
+            print("Nu poti alege acolo, Mai incearca!")
+    board[alegere - 1] = "X"
 
 
 def alegere_calculator():
@@ -49,9 +63,13 @@ def alegere_calculator():
         board[8] = '0'
     else:
         ramas = [1, 3, 5, 7]
-        computer_choice = random.choice(ramas)
-        while computer_choice not in ramas:
-            board[computer_choice] = '0'
+        while len(ramas) > 0:
+            computer_choice = random.choice(ramas)
+            if board[computer_choice] == " ":
+                board[computer_choice] = '0'
+                break
+            else:
+                ramas.remove(computer_choice)
 
 
 def check_castigator():
@@ -114,14 +132,16 @@ def game():
             print_board()
             alegerea_mea()
             alegere_calculator()
-            print_board()
-        cine_castiga()
+        print_board()
+        print(cine_castiga())
+
     else:
         while check_castigator():
+            print_board()
             alegere_calculator()
-            print_board()
             alegerea_mea()
-            print_board()
-        cine_castiga()
+        print_board()
+        print(cine_castiga())
 
-print(game())
+
+game()
