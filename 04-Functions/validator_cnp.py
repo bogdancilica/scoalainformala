@@ -56,10 +56,9 @@ def cifra_de_control():
     for i, j in zip(cnp[:12], n):
         suma += int(i) * j
     a = suma % 11
+    c = a
     if a == 10:
         c = 1
-    else:
-        c = a
     return int(cnp[12]) == c
 
 
@@ -68,8 +67,7 @@ def validare():
         return "\nAti introdus un CNP invalid."
     elif sex() and data_nasterii() and judet() and nnn() and cifra_de_control():
         return "\nAti introdus un CNP valid."
-    else:
-        return "\nAti introdus un CNP invalid."
+    return "\nAti introdus un CNP invalid."
 
 
 print(validare())
