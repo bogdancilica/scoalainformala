@@ -15,6 +15,8 @@ while not nr_categorii.isdigit():
 
 for i in range(int(nr_categorii)):
     categorie = input("Introduceti categorie: ")
+    while categorie in categorii["Categorii"]:
+        categorie = input("Categoria exista deja in lista. Incercati din nou: ")
     categorii["Categorii"].append(categorie)
 
 lista_categorii = pd.DataFrame(categorii)
@@ -40,13 +42,15 @@ print("")
 for i in range(int(nr_taskuri)):
     # introducere nume
     nume = input("Introduceti numele taskului: ")
+    while nume in taskuri["Nume Task"]:
+        nume = input("Taskul exista deja in lista. Incercati din nou: ")
     taskuri["Nume Task"].append(nume)
 
     # introducere data
     while True:
-        data_limita = input("Introduceti termenul limita (zz.ll.aaaa oo:mm): ")
+        data_limita = input("Introduceti termenul limita (aaaa.ll.zz oo:mm): ")
         try:
-            datetime.strptime(data_limita, "%d.%m.%Y %H:%M")
+            datetime.strptime(data_limita, "%Y.%m.%d %H:%M")
             break
         except ValueError:
             print("Formatul gresit!")
