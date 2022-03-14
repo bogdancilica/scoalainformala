@@ -161,17 +161,152 @@
 # print(obiect_1.vaccinuri)
 
 # validator CNP cu clase
+#
+# class Validator:
+#     def __init__(self, CNP):
+#         self.cnp = CNP
+#
+#     def lungime (self):
+#         if len(self.cnp) != 13:
+#             return False
+#         return True
+#
+#     def __str__(self):
+#         if self.lungime() is True:
+#             return f"CNP-ul este {self.cnp} este valid"
+#         return f"CNP-ul este {self.cnp} nu este valid"
 
-class Validator:
-    def __init__(self, CNP):
-        self.cnp = CNP
+# class Star:
+#
+#     def __init__(self, nume, galaxie):
+#         self.name = nume
+#         self.galaxy = galaxie
+#
+#     def __str__(self):
+#         return f"{self.name} este in {self.galaxy}"
+#
+#
+# soare = Star("Soarele", "Calea Lacteei")
+# print(soare)
 
-    def lungime (self):
-        if len(self.cnp) != 13:
-            return False
-        return True
+# vehicul
+# vehiculdeteren
+# vehiculdetractare
 
-    def __str__(self):
-        if self.lungime() is True:
-            return f"CNP-ul este {self.cnp} este valid"
-        return f"CNP-ul este {self.cnp} nu este valid"
+class Vehicul:
+    pass
+
+
+class VehiculTeren(Vehicul): # scriem intre paranteze clasa mostenire
+    pass
+
+
+class VehiculTractare(VehiculTeren):
+    pass
+
+# parinti sunt Vehicul pentru VehiculTeren si VehiculTractare (indirect)
+# parinti sunt VehiculTeren pentru VechiuclTractare
+# parintii sunt superclase pentru copii (superclass)
+# copiii sunt VehiculTeren si VehiculTractare (indirect) pentru Vehiucl
+# copilul este VehiculTractare pentru VehiculTeren
+# copii se numesc subclase
+
+# print("Vehicul VehiculTeren VehiculTractare")
+# for cls1 in [Vehicul, VehiculTeren, VehiculTractare]:
+#     for cls2 in [Vehicul, VehiculTeren, VehiculTractare]:
+#         print(issubclass(cls1, cls2), end='\t')
+#     print()
+
+# cum verificam daca o clasa are mostenire
+# vehicul1 = Vehicul()
+# vehicul_teren = VehiculTeren()
+# vehicul_tractare = VehiculTractare()
+# print(isinstance(vehicul1, Vehicul))
+# print(isinstance(vehicul1, VehiculTeren))
+# print(isinstance(vehicul_teren, Vehicul))
+# print(isinstance(vehicul_tractare, Vehicul))
+# print(isinstance(vehicul1, VehiculTractare))
+#
+# for obj in [vehicul1, vehicul_teren, vehicul_tractare]:
+#     for cls in [Vehicul, VehiculTeren, VehiculTractare]:
+#         print(isinstance(obj, cls, end='\t'))
+#     print()
+
+# class Exemplu:
+#
+#     def __init__(self, val):
+#         self.value = val
+#
+#     def __str__(self):
+#         return f'{self.value}'
+#
+#
+# obiect_1 = Exemplu(0)
+# obiect_2 = Exemplu(2)
+# obiect_3 = obiect_1
+# obiect_3.value += 1
+#
+# print(obiect_1 is obiect_2)
+# print(obiect_1.value, '247')
+# print(obiect_2 is obiect_3)
+# print(obiect_2.value, '249')
+# print(obiect_3 is obiect_1)
+# obiect_1.value = 7
+# print(obiect_3.value, obiect_1.value, '251')
+# print(obiect_1.value, obiect_2.value, obiect_3.value)
+
+# string_1 = "Maria are mere "
+# string_2 = "Maria are mere mari"
+# string_1 += "mari"
+# string_2 = string_1 # alternativ
+#
+# print(string_1 == string_2, string_1 is string_2)
+
+# class SuperClass:
+#
+#     supVar = 1 # variabila de clasa
+#     variabila_clasa = 6
+#
+#     def __init__(self, nume):
+#         self.name = nume
+#         # self.var_1 = 101
+#
+#     def __str__(self):
+#         return f'Numele meste este {self.name}'
+#
+# class Clasa3(SuperClass):
+#
+#     variabila_clasa = 5
+#
+#     def __init__(self, nume):
+#         super().__init__(nume)
+#         self.name = nume
+#         self.var_2 = 201
+#         self.var_1 = 101
+#
+#     def prima_metoda(self):
+#         return 4
+#
+# class Subclass(Clasa3):
+#
+#     subVar = 2 # variabila de clasa
+#     supVar = 3
+#
+#     def __init__(self, nume):
+#         self.var_1 = 202
+#         print(self.var_1)
+#         super().__init__(nume) # invoca constructorul superclasei + acces la toate resursele disponibile in superclasa
+#         self.var_3 = 301
+#         self.var_1 = 203
+#         # self.name = nume
+#         # Super.__init__(self, nume)
+#
+#     def __str__(self):
+#         return f'Nume'
+
+# obiect = Subclass("Bogdan")
+# print(obiect.subVar)
+# print(obiect.supVar)
+# print(obiect.variabila_clasa)
+# print(obiect.var_3, obiect.var_2, obiect.var_1)
+# print(obiect.prima_metoda())
