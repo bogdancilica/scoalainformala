@@ -193,16 +193,16 @@
 # vehiculdeteren
 # vehiculdetractare
 
-class Vehicul:
-    pass
-
-
-class VehiculTeren(Vehicul): # scriem intre paranteze clasa mostenire
-    pass
-
-
-class VehiculTractare(VehiculTeren):
-    pass
+# class Vehicul:
+#     pass
+#
+#
+# class VehiculTeren(Vehicul): # scriem intre paranteze clasa mostenire
+#     pass
+#
+#
+# class VehiculTractare(VehiculTeren):
+#     pass
 
 # parinti sunt Vehicul pentru VehiculTeren si VehiculTractare (indirect)
 # parinti sunt VehiculTeren pentru VechiuclTractare
@@ -310,3 +310,33 @@ class VehiculTractare(VehiculTeren):
 # print(obiect.variabila_clasa)
 # print(obiect.var_3, obiect.var_2, obiect.var_1)
 # print(obiect.prima_metoda())
+
+# Continuare 16.03.22
+
+class A:
+
+    def info(self):
+        return 'Clasa A'
+
+class F:
+
+    def info(self):
+        return 'Clasa F'
+
+
+class B(A):
+    pass
+    # def info(self):
+    #     return 'Clasa B'
+
+class C(A):
+    pass
+    # def info(self):
+    #     return 'Clasa C'
+
+
+class D(A, C):
+    pass
+
+
+print(D().info())
