@@ -5,7 +5,7 @@ class CatalogAuto:
         self.tip = tip
 
 
-    def culoare(self, culoare):
+    def schimb_culoare(self, culoare):
         self.culoare = culoare
 
 
@@ -15,7 +15,7 @@ class CatalogAuto:
 class ScauneIncalzite(CatalogAuto):
 
     def __init__(self, scaune_incalzite, marca, tip):
-        super().__init__(self, marca, tip)
+        super().__init__(marca, tip)
         self.scaune_incalizte = scaune_incalzite
 
     def __str__(self):
@@ -25,7 +25,7 @@ class ScauneIncalzite(CatalogAuto):
 class BlocuriOpticeLED(CatalogAuto):
 
     def __init__(self, blocuri_optice_led, marca, tip):
-        super().__init__(self, marca, tip)
+        super().__init__(marca, tip)
         self.blocuri_optice_led = blocuri_optice_led
 
     def __str__(self):
