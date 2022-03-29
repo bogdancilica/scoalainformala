@@ -5,7 +5,7 @@ def elimina_num(lista):
     position = 2
     index = 0
     len_lista = len(lista)
-    while len(lista) > 0:
+    while len_lista > 0:
         index = (position + index) % len_lista
         print(lista.pop(index))
         print(lista)
