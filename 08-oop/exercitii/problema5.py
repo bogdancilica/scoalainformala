@@ -1,3 +1,13 @@
+# Creati o clasa care se numeste lista_CD_DVD.
+# La crearea unui obiect ala cestei clase va solicita doua argumente reprezentand titlu si
+# continut cu care va crea doua atribute.
+# Fiecare obiect creat va fi adaugat intr-o lista din namespace-ul global Clasa are o
+# metoda care cauta si gaseste pe baza textului dat ca argument un obiect, afisiand titlu
+# si continutul. Se va folosi lista de obiecte pentru a cauta.
+# La afisarea obiectului returnati utilizand metoda __str__ titlul obiectului.
+# Aplicati clasa pentru 3 exemple apoi folositi cautarea pe un caz pozitiv si unul
+# negativ. Printati cele 3 obiecte
+
 class ListaCDDVD:
 
     lista_obj = []
