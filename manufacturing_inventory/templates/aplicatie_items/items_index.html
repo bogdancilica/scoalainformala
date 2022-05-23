@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<a id="id_add_item" class="btn btn-primary" href="{% url 'items:add' %}">Add Item</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th>Category</th>
+        <th>Item No.</th>
+        <th>Manufacturer</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price ($)</th>
+        <th>Auto PO</th>
+        <th>Auto PO Qty.</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items_list %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.item_no }}</td>
+        <td>{{ item.manufacturer }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{% if item.auto_po == 1 %}
+            <span>Active</span>
+            {% else %}
+            <span>Inactive</span>
+            {% endif %}
+        </td>
+        <td>{{ item.auto_po_qty }}</td>
+        <td>{% if item.status == 1 %}
+            <span>Active</span>
+            {% else %}
+            <span>Inactive</span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'items:edit' item.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'items:delete' item.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
