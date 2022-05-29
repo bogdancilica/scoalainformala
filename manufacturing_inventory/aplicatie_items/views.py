@@ -10,9 +10,14 @@ from aplicatie_items.models import Items
 class ItemsView(LoginRequiredMixin, ListView):
     model = Items
     template_name = 'aplicatie_items/items_index.html'
-    # paginate_by = 10
-    # queryset = model.objects.filter(active=1)
-    # context_object_name = 'items'
+    paginate_by = 5
+    queryset = model.objects.filter(status=1)
+    context_object_name = 'items'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(ItemsView, self).get_context_data(*args, **kwargs)
+        # data['locations'] = self.model.objects.filter(active=1)
+        return data
 
 class CreateItemView(LoginRequiredMixin, CreateView):
     model = Items
@@ -35,6 +40,11 @@ def delete_item(request, pk):
     Items.objects.filter(id=pk).update(status=0)
     return redirect('items:items_list')
 
+@login_required
+def activate_item(request, pk):
+    Items.objects.filter(id=pk).update(status=1)
+    return redirect('items:items_list')
+
 class GetItemView(LoginRequiredMixin, UpdateView):
     model = Items
     fields = ['quantity']
@@ -42,3 +52,16 @@ class GetItemView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('items:items_list')
+
+
+class ItemsInactiveView(LoginRequiredMixin, ListView):
+    model = Items
+    template_name = 'aplicatie_items/items_index.html'
+    paginate_by = 5
+    queryset = model.objects.filter(status=0)
+    context_object_name = 'items'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(ItemsInactiveView, self).get_context_data(*args, **kwargs)
+        # data['locations'] = self.model.objects.filter(active=0)
+        return data

@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for item in items_list %}
+    {% for item in items %}
     <tr>
         <td>{{ forloop.counter }}</td>
         <td>{{ item.category }}</td>
@@ -42,11 +42,37 @@
         </td>
         <td>
             <a href="{% url 'items:edit' item.id %}" class="btn btn-info">Edit</a>
-            <a href="{% url 'items:delete' item.id %}" class="btn btn-danger">Delete</a>
+            {% if item.status == 1 %}
+                <a href="{% url 'items:delete' item.id %}" class="btn btn-danger">Delete</a>
+            {% else %}
+                <a href="{% url 'items:activate' item.id %}" class="btn btn-info">Activate</a>
+            {% endif %}
             <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
         </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+{% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a class='btn' href='?page={{ page_obj.previos_page_number}}'><<</a></li>
+            {% else %}
+                <li class='disabled btn'><span><<</span></li>
+            {% endif %}
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="'activ btn btn-info"><span>{{ i }}<span class='sr-only'>(curent)</span></span></li>
+            {% else %}
+                <li><a class="btn" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li><a class="btn" href="?page={{ page_obj.next_page_number }}">>></a></li>
+        {% else %}
+            <li class="disabled btn"><span>>></span></li>
+        {% endif %}
+        <span class="align-right">Showing {{ page_obj.start_index }} - {{ page_obj.end_index}} of {{ page_obj.paginator_count }}</span>
+        </ul>
+    {% endif %}
 {% endblock %}

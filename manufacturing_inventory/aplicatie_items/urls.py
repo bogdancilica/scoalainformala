@@ -9,4 +9,6 @@ urlpatterns = [
     path('<int:pk>/edit/', views.EditItemView.as_view(), name="edit"),
     path('<int:pk>/delete/', views.delete_item, name='delete'),
     path('<int:pk>/get/', views.GetItemView.as_view(), name="get"),
+    path('<int:pk>/activate/', views.activate_item, name='activate'),
+    path('inactive_items/', views.ItemsInactiveView.as_view(), name='inactive_items'),
 ]
