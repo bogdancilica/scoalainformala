@@ -7,13 +7,12 @@
         <button type="submit">Search</button>
 
         {% if searched %}
-        <h1> {{ searched }}</h1>
         <br/>
         {% for item in items %}
-        {{ item }} - {{item.item_no}}<br/>
+        <h2> Item No: {{item.item_no}} | Quantity: {{item.quantity}}</h2><br/>
         {% endfor %}
         {% else %}
-        <h3> You searched nothing! </h3>
+        <h5> You searched nothing! </h5>
         {% endif%}
     </form>
 

@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView
@@ -27,10 +27,15 @@ class CreateItemView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('items:items_list')
 
-class EditItemView(LoginRequiredMixin, UpdateView):
+class EditItemView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Items
     fields = '__all__'
     template_name = 'aplicatie_items/item_form.html'
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
     def get_success_url(self):
         return reverse('items:items_list')
@@ -70,7 +75,7 @@ class ItemsInactiveView(LoginRequiredMixin, ListView):
 def search_item(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        result = Items.objects.filter(name__containts=searched)
-        return render(request, 'aplicatie_items/search.html', {'searched': searched, 'result': result})
+        result = Items.objects.filter(item_no__icontains=searched)
+        return render(request, 'aplicatie_items/search.html', {'searched': searched, 'items': result})
     else:
         return render(request, 'aplicatie_items/search.html', {})
