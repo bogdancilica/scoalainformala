@@ -1,0 +1,9 @@
+#bg{
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 1680px 1050px;
+    background-attachment: fixed;
+}
+body{
+background-color: #DCDCDC;
+}

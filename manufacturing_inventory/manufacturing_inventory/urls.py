@@ -23,4 +23,6 @@ urlpatterns = [
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('items/', include('aplicatie_items.urls')),
     path('profile/', include('aplicatie_userprofile.urls')),
+    path('home/', include('aplicatie_home.urls')),
+    path('projects/', include('aplicatie_projects.urls')),
 ]
