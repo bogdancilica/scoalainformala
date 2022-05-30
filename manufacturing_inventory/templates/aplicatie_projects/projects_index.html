@@ -1,67 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<a id="id_search_item" class="btn btn-primary" href="{% url 'items:search' %}">Search</a>
 {% if request.user.is_superuser %}
-<a id="id_add_item" class="btn btn-primary" href="{% url 'items:add' %}">Add Item</a>
+<a id="id_add_project" class="btn btn-primary" href="{% url 'projects:add' %}">Add Project</a>
 {% endif%}
 <table class="table" bgcolor="#ADD8E6" border="1px solid black">
     <thead>
     <tr>
         <th>Index</th>
-        <th>Category</th>
-        <th>Item No.</th>
-        <th>Manufacturer</th>
-        <th>Description</th>
-        <th>Quantity</th>
-        <th>Price ($)</th>
-        <th>Auto PO</th>
-        <th>Auto PO Qty.</th>
+        <th>Project Name</th>
+        <th>Reference Number</th>
+        <th>Customer</th>
+        <th>Responsible Engineer</th>
         <th>Status</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    {% for item in items %}
+    {% for item in projects_list %}
     <tr>
         <td>{{ forloop.counter }}</td>
-        <td>{{ item.category }}</td>
-        <td>{{ item.item_no }}</td>
-        <td>{{ item.manufacturer }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.quantity }}</td>
-        <td>{{ item.price }}</td>
-        <td>{% if item.auto_po == 1 %}
-            <span>Active</span>
-            {% else %}
-            <span>Inactive</span>
-            {% endif %}
-        </td>
-        <td>{{ item.auto_po_qty }}</td>
+        <td>{{ item.project_name }}</td>
+        <td>{{ item.reference_number }}</td>
+        <td>{{ item.customer }}</td>
+        <td>{{ item.responsible_engineer}}</td>
         <td>{% if item.status == 1 %}
             <span>Active</span>
             {% else %}
             <span>Inactive</span>
             {% endif %}
         </td>
-
         <td>
         {% if request.user.is_superuser %}
-            <a href="{% url 'items:edit' item.id %}" class="btn btn-info">Edit</a>
+            <a href="{% url 'projects:edit' item.id %}" class="btn btn-info">Edit</a>
             {% if item.status == 1 %}
-                <a href="{% url 'items:delete' item.id %}" class="btn btn-danger">Delete</a>
+                <a href="{% url 'projects:delete' item.id %}" class="btn btn-danger">Delete</a>
             {% else %}
-                <a href="{% url 'items:activate' item.id %}" class="btn btn-info">Activate</a>
-            {% endif %}
-            {% if item.status == 1 %}
-            <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
-            {% endif %}
-        {% else %}
-            {% if item.status == 1 %}
-            <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
+                <a href="{% url 'projects:activate' item.id %}" class="btn btn-info">Activate</a>
             {% endif %}
         {% endif%}
         </td>
-
     </tr>
     {% endfor %}
     </tbody>

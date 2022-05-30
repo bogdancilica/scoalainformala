@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="search" placeholder="Search" aria-label="Search" name="searched">
+        <button type="submit">Search</button>
+
+        {% if searched %}
+        <h1> {{ searched }}</h1>
+        <br/>
+        {% for item in items %}
+        {{ item }} - {{item.item_no}}<br/>
+        {% endfor %}
+        {% else %}
+        <h3> You searched nothing! </h3>
+        {% endif%}
+    </form>
+
+</center>
+{% endblock %}

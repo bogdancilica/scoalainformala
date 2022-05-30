@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:pk>/get/', views.GetItemView.as_view(), name="get"),
     path('<int:pk>/activate/', views.activate_item, name='activate'),
     path('inactive_items/', views.ItemsInactiveView.as_view(), name='inactive_items'),
+    path('search/', views.search_item, name='search'),
 ]
