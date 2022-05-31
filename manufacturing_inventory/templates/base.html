@@ -22,6 +22,7 @@
                         <a class="btn btn-primary" href="{% url 'userprofile:new_user' %}">Add User</a>
                         {% endif%}
                         <a class="btn btn-primary" href="{% url 'projects:projects_list' %}">Projects</a>
+                        <a class="btn btn-success" href="{% url 'reports:reports_list' %}">Get Items</a>
                         <a class="btn btn-danger" href="{% url 'logout' %}">Log out</a>
                         <span>Hi, {{ request.user.username |upper }}</span>
                     {% endif%}

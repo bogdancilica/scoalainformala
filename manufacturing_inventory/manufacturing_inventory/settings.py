@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'aplicatie_userprofile',
     'aplicatie_home',
     'aplicatie_projects',
+    'aplicatie_reports',
 ]
 
 MIDDLEWARE = [
