@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -16,13 +16,17 @@ class ItemsView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         data = super(ItemsView, self).get_context_data(*args, **kwargs)
-        # data['locations'] = self.model.objects.filter(active=1)
         return data
 
-class CreateItemView(LoginRequiredMixin, CreateView):
+class CreateItemView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Items
     fields = '__all__'
     template_name = 'aplicatie_items/item_form.html'
+
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
     def get_success_url(self):
         return reverse('items:items_list')
@@ -41,14 +45,17 @@ class EditItemView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return reverse('items:items_list')
 
 @login_required
+@permission_required('is_superuser')
 def delete_item(request, pk):
     Items.objects.filter(id=pk).update(status=0)
     return redirect('items:items_list')
 
 @login_required
+@permission_required('is_superuser')
 def activate_item(request, pk):
     Items.objects.filter(id=pk).update(status=1)
     return redirect('items:items_list')
+
 
 class GetItemView(LoginRequiredMixin, UpdateView):
     model = Items
@@ -68,7 +75,6 @@ class ItemsInactiveView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         data = super(ItemsInactiveView, self).get_context_data(*args, **kwargs)
-        # data['locations'] = self.model.objects.filter(active=0)
         return data
 
 

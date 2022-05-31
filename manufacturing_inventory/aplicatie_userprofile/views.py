@@ -1,7 +1,7 @@
 import random
 import string
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -12,11 +12,15 @@ from aplicatie_userprofile.forms import NewAccountForm
 
 punctuation = '!$%?#@'
 
-class CreateNewAccount(LoginRequiredMixin, CreateView):
+class CreateNewAccount(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = User
     template_name = 'aplicatie_items/item_form.html'
     form_class = NewAccountForm
 
+    def test_func(self):
+        if self.request.user.is_superuser:
+            return True
+        return False
 
     def form_valid(self, form):
         if form.is_valid() and form.errors is False:

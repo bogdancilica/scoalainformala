@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<a id="id_search_item" class="btn btn-primary" href="{% url 'items:search' %}">Search</a>
+
+<a id="id_search_item" class="btn btn-secondary" href="{% url 'items:search' %}">Search</a>
+
 {% if request.user.is_superuser %}
-<a id="id_add_item" class="btn btn-primary" href="{% url 'items:add' %}">Add Item</a>
+<a id="id_add_item" class="btn btn-secondary" href="{% url 'items:add' %}">Add Item</a>
 {% endif%}
+
 <table class="table" bgcolor="#ADD8E6" border="1px solid black">
     <thead>
     <tr>

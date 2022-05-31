@@ -5,12 +5,72 @@
         {% csrf_token %}
         <input type="search" placeholder="Search" aria-label="Search" name="searched">
         <button type="submit">Search</button>
+        <br/>
 
         {% if searched %}
         <br/>
-        {% for item in items %}
-        <h2> Item No: {{item.item_no}} | Quantity: {{item.quantity}}</h2><br/>
-        {% endfor %}
+        <table class="table" bgcolor="#ADD8E6" border="1px solid black">
+            <thead>
+            <tr>
+                <th>Index</th>
+                <th>Category</th>
+                <th>Item No.</th>
+                <th>Manufacturer</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price ($)</th>
+                <th>Auto PO</th>
+                <th>Auto PO Qty.</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.item_no }}</td>
+                <td>{{ item.manufacturer }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>{% if item.auto_po == 1 %}
+                    <span>Active</span>
+                    {% else %}
+                    <span>Inactive</span>
+                    {% endif %}
+                </td>
+                <td>{{ item.auto_po_qty }}</td>
+                <td>{% if item.status == 1 %}
+                    <span>Active</span>
+                    {% else %}
+                    <span>Inactive</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'items:edit' item.id %}" class="btn btn-info">Edit</a>
+                    {% if item.status == 1 %}
+                    <a href="{% url 'items:delete' item.id %}" class="btn btn-danger">Delete</a>
+                    {% else %}
+                    <a href="{% url 'items:activate' item.id %}" class="btn btn-info">Activate</a>
+                    {% endif %}
+                    {% if item.status == 1 %}
+                    <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
+                    {% endif %}
+                    {% else %}
+                    {% if item.status == 1 %}
+                    <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
+                    {% endif %}
+                    {% endif%}
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
         {% else %}
         <h5> You searched nothing! </h5>
         {% endif%}
