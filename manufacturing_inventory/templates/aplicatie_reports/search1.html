@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="search" placeholder="Search" aria-label="Search" name="searched">
+        <button type="submit">Generate Report by Project</button>
+        <br/>
+
+        {% if searched %}
+        <br/>
+        <table class="table" bgcolor="#ADD8E6" border="1px solid black">
+            <thead>
+            <tr>
+                <th>Index</th>
+                <th>Item No.</th>
+                <th>Quantity</th>
+                <th>User</th>
+                <th>Project</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in reports %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.item_no }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.engineer }}</td>
+                <td>{{ item.project }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h5> You generate nothing! </h5>
+        {% endif%}
+    </form>
+
+</center>
+{% endblock %}

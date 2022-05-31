@@ -18,4 +18,4 @@ class Items(models.Model):
     status = models.BooleanField(default=1)
 
     def __str__(self):
-        return f"{self.item_no}_{self.category}"
+        return f"{self.item_no}"
