@@ -85,3 +85,11 @@ def search_item(request):
         return render(request, 'aplicatie_items/search.html', {'searched': searched, 'items': result})
     else:
         return render(request, 'aplicatie_items/search.html', {})
+
+# def get_item(request, pk):
+#     queryeset = Items.objects.get(id=pk)
+#     form = IssueForm(request.POST or None, instance = queryeset)
+#     if form.is_valid():
+#         instance = form.save(commit=False)
+#         instance.quantity -= instance.issue_quantity
+#
