@@ -1,5 +1,10 @@
+
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
 from django.shortcuts import render
+
+
 from django.urls import reverse
 from django.views.generic import ListView, CreateView
 
@@ -28,9 +33,10 @@ class GetItemView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         quantity_to_diff = instance_report.quantity
         item_instance = Items.objects.get(id=instance_report.item_no.id)
         initial_quantity = item_instance.quantity
-        item_instance.quantity = initial_quantity - quantity_to_diff
-        item_instance.save()
-        return reverse('reports:reports_list')
+        if initial_quantity >= quantity_to_diff:
+            item_instance.quantity = initial_quantity - quantity_to_diff
+            item_instance.save()
+            return reverse('reports:reports_list')
 
 
 def report_user(request):

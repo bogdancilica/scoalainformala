@@ -55,9 +55,6 @@
             {% else %}
                 <a href="{% url 'items:activate' item.id %}" class="btn btn-info">Activate</a>
             {% endif %}
-            {% if item.status == 1 %}
-            <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
-            {% endif %}
         {% else %}
             {% if item.status == 1 %}
             <a href="{% url 'items:get' item.id %}" class="btn btn-success">Get</a>
