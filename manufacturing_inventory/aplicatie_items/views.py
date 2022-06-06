@@ -57,13 +57,13 @@ def activate_item(request, pk):
     return redirect('items:items_list')
 
 
-class GetItemView(LoginRequiredMixin, UpdateView):
-    model = Items
-    fields = ['quantity']
-    template_name = 'aplicatie_items/item_form.html'
-
-    def get_success_url(self):
-        return reverse('items:items_list')
+# class GetItemView(LoginRequiredMixin, UpdateView):
+#     model = Items
+#     fields = ['quantity']
+#     template_name = 'aplicatie_items/item_form.html'
+#
+#     def get_success_url(self):
+#         return reverse('items:items_list')
 
 
 class ItemsInactiveView(LoginRequiredMixin, ListView):
@@ -86,10 +86,3 @@ def search_item(request):
     else:
         return render(request, 'aplicatie_items/search.html', {})
 
-# def get_item(request, pk):
-#     queryeset = Items.objects.get(id=pk)
-#     form = IssueForm(request.POST or None, instance = queryeset)
-#     if form.is_valid():
-#         instance = form.save(commit=False)
-#         instance.quantity -= instance.issue_quantity
-#
